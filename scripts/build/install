@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+
+set -ue
+
+cp _exe/docker-machine-driver-liquidweb ${GOPATH}/bin/
+
+echo ""
+echo "docker-machine-driver-liquidweb has been installed in ${GOPATH}/bin."
+echo "Use this plugin with docker-machine."
+echo ""

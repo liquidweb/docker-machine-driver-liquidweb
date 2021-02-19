@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+
+set -e
+
+[[ -e _exe/docker-machine-driver-liquidweb ]] && rm -f _exe/docker-machine-driver-liquidweb
+go build -o _exe/docker-machine-driver-liquidweb -x --ldflags "${LDFLAGS}"
