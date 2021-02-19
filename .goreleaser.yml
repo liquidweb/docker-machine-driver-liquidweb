@@ -1,0 +1,28 @@
+# Make sure to check the documentation at http://goreleaser.com
+project_name: lw
+before:
+  hooks:
+    - go mod verify
+builds:
+- env:
+  - CGO_ENABLED=0
+  goos:
+    - windows
+    - linux
+    - darwin
+archives:
+- replacements:
+    darwin: Darwin
+    linux: Linux
+    windows: Windows
+    amd64: x86_64
+checksum:
+  name_template: 'checksums.txt'
+snapshot:
+  name_template: "{{ .Tag }}"
+changelog:
+  sort: asc
+  filters:
+    exclude:
+    - '^docs:'
+    - '^test:'
