@@ -123,6 +123,10 @@ func (self *Driver) SetConfigFromFlags(opts drivers.DriverOptions) error {
 	self.LwApiDomain = opts.String("lw-api-domain")
 
 	self.LwComputeConfigId = opts.Int("lw-config-id")
+	if self.LwComputeConfigId == 0 {
+		// TODO private parent child support
+		return errors.New("must give a lw-config-id")
+	}
 	self.LwComputeZoneId = opts.Int("lw-zone-id")
 	self.LwComputeNodeHostname = opts.String("lw-node-hostname")
 	self.LwComputeNodeRootPassword = opts.String("lw-node-root-password")
