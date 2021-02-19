@@ -90,6 +90,7 @@ func (self *Driver) GetCreateFlags() []mcnflag.Flag {
 			EnvVar: "LW_CONFIG_ID",
 			Name:   "lw-config-id",
 			Usage:  "config-id to deploy the node as",
+			Value:  -1,
 		},
 
 		mcnflag.IntFlag{
@@ -123,16 +124,20 @@ func (self *Driver) SetConfigFromFlags(opts drivers.DriverOptions) error {
 	self.LwApiDomain = opts.String("lw-api-domain")
 
 	self.LwComputeConfigId = opts.Int("lw-config-id")
-	if self.LwComputeConfigId == 0 {
-		// TODO private parent child support
-		return errors.New("must give a lw-config-id")
-	}
 	self.LwComputeZoneId = opts.Int("lw-zone-id")
 	self.LwComputeNodeHostname = opts.String("lw-node-hostname")
 	self.LwComputeNodeRootPassword = opts.String("lw-node-root-password")
 	self.LwComputeTemplate = opts.String("lw-template")
 
 	self.DockerPort = opts.Int("lw-docker-port")
+
+	if self.LwComputeConfigId == -1 {
+		return errors.New("must give a lw-config-id")
+	}
+
+	if self.LwComputeZoneId == -1 {
+		return errors.New("must give a lw-zone-id")
+	}
 
 	if self.DockerPort <= 0 {
 		return errors.New("docker port must be greater than zero")
