@@ -6,4 +6,7 @@ install: build
 build:
 	scripts/build/plugin
 
+release:
+	scripts/build/release-build
+
 .PHONY: build install clean
