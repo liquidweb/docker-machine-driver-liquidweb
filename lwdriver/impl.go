@@ -136,6 +136,9 @@ func (self *Driver) Create() error {
 		ConfigID:     self.LwComputeConfigId,
 	}
 	server, err = api.StormServer.Create(ca)
+	if err != nil {
+		return err
+	}
 
 	self.LwComputeNodeUniqId = server.UniqID
 
