@@ -109,5 +109,17 @@ Are you sure? (y/n): y
 (docker05) removing liquidweb compute node [DTHPDU]...
 Successfully removed docker05
 user@host $ 
-
 ```
+
+### Pointing to your machine
+
+Configure your local docker client to use your remote machine:
+
+```shell
+user@host $ eval $(docker-machine env docker01)
+user@host $ docker-machine ls
+NAME       ACTIVE   DRIVER      STATE     URL                      SWARM   DOCKER     ERRORS
+docker01   *        liquidweb   Running   tcp://50.28.52.94:2376           v20.10.3   
+user@host $ 
+```
+Note that in the `docker-machine ls` above, there is an `*` to the right of `docker01` because its the active host from the eval above. Any containers created/started via your local `docker` will now happen on the remote `docker01`, and not localhost.
