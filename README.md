@@ -89,7 +89,7 @@ Setting Docker configuration on the remote daemon...
 user@host $ 
 ```
 
-Once successful, you should see the node status as `READY`:
+Once successful, you should see the node state as `Running` similar to below:
 
 ```shell
 user@host $ docker-machine ls
